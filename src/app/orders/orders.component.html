@@ -1,0 +1,46 @@
+<div class="card border-primary mb-3"> <!--style="max-width: 18rem;"-->
+  <div class="card-header">Orders</div>
+  <div class="card-body text-primary ">
+    <h5 class="card-title">List of orders</h5>
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <div>
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/addedit/form']">Create order</button>
+    </div>
+    <br>
+    <!--
+    <div *ngIf="clientes?.length ==0" class="alert alert-info">
+      No hay regsitros en la base de datos.
+    </div>
+    -->
+    <table class="table table-bordered table-stripped" > <!--*ngIf="orders?.length>0"-->
+      <thead>
+        <tr>
+          <!--<th>ID</th>-->
+          <th>#Order</th>
+          <th>Date</th>
+          <th>#Products</th>
+          <th>Final Price</th>
+          <th>
+            Options
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <!--<td><button [routerLink]="['/clientes/ver',cliente.id]" class="btn btn-success btn-sm">{{cliente.id}}</button></td>-->
+          <td>{{order.orderNumber}}</td>
+          <td>{{order.createAt | date: 'EEEE dd,MMMM yyyy'}}</td>
+          <td>{{order.itemOrders.length}}</td>
+          <td>{{order.finalPrice}}</td>
+          <td>
+            <button type="button" name="editar" class="btn btn-primary" [routerLink]="['/addedit/form/',order.orderNumber]" (click)="editOrder(Order, $index)">edit</button><!--[routerLink]="['/addedit/form/',order.orderNumber]"-->
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)='deleteOrder(order)' class="btn btn-danger btn-sm">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--<paginator-nav *ngIf="paginador" [paginador] = "paginador"></paginator-nav>-->
+  </div>
+</div>
